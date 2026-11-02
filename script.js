@@ -101,7 +101,7 @@ function initContactForm() {
     if (!isValid) { status.textContent = translations[currentLang].f_error; return; }
     status.textContent = translations[currentLang].f_ok;
     const body = encodeURIComponent(`${message}\n\n${name} <${email}>`);
-    window.location.href = `mailto:contact@example.com?subject=Portfolio%20contact&body=${body}`;
+    window.location.href = `mailto:jj.albaarango@gmail.com?subject=Portfolio%20contact&body=${body}`;
     form.reset();
   });
 }
