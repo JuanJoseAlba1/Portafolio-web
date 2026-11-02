@@ -63,7 +63,7 @@ portafolio/
 
 - **LinkedIn:** [linkedin.com/in/juan-josé-alba-arango](https://www.linkedin.com/in/juan-josé-alba-arango/)
 - **GitHub:** [github.com/JuanJoseAlba1](https://github.com/JuanJoseAlba1)
-- **Email:** *[jj.albaarango@gmail.com]*
+- **Email:** *jj.albaarango@gmail.com*
 
 ---
 
