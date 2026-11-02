@@ -1,0 +1,625 @@
+/* ==========================================================================
+   Portfolio – Juan José Alba
+   Index:
+   1. Design tokens (theme)      7. About
+   2. Base & utilities           8. Skills & Projects
+   3. Buttons                    9. Contact form
+   4. Header & navigation       10. Social icons
+   5. Hero                      11. Footer
+   6. Stats                     12. Cookie banner
+                                13. Responsive & accessibility
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. DESIGN TOKENS
+   Dark mode is the default; body.light-mode overrides only what changes.
+   The accent color is shared by both themes to keep the brand identity.
+   ========================================================================== */
+:root {
+  --bg: #1D1D1D;
+  --surface: #282828;
+  --text: #F9F9F9;
+  --muted: #A7A7A7;
+  --accent: #E85002;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: none;
+  --radius: 16px;
+}
+
+body.light-mode {
+  --bg: #F9F9F9;
+  --surface: #FFFFFF;
+  --text: #1D1D1D;
+  --muted: #646464;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+}
+
+
+/* ==========================================================================
+   2. BASE & UTILITIES
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Keeps anchored sections from hiding under the sticky header */
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.7;
+  transition: background 0.3s, color 0.3s;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(1120px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+section.container {
+  padding-block: 4rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0.75rem 0 1rem;
+}
+
+/* Shared card look used by stats, skills, projects and contact */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.6rem;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+
+/* ==========================================================================
+   3. BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #FFFFFF;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.65rem 1.4rem;
+  font: 600 0.9rem 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(232, 80, 2, 0.35);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--text);
+}
+
+.btn--outline:hover {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+
+/* ==========================================================================
+   4. HEADER & NAVIGATION
+   ========================================================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  /* Translucent background so content blurs underneath while scrolling */
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 68px;
+}
+
+.logo {
+  font: 700 1.3rem 'Space Grotesk', sans-serif;
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-inline: auto;               /* centers the menu between logo and tools */
+  font: 400 0.9rem 'Plus Jakarta Sans', sans-serif;
+}
+
+.nav a:not(.btn) {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.nav a:not(.btn):hover {
+  color: var(--text);
+}
+
+.header__tools {
+  display: flex;
+  gap: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.tool {
+  display: grid;
+  place-items: center;
+  min-width: 38px;
+  height: 38px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: 600 0.8rem 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.tool:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Hamburger button: only visible on small screens (see section 13) */
+.menu-btn {
+  display: none;
+}
+
+
+/* ==========================================================================
+   5. HERO
+   ========================================================================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.hero__text p.muted {
+  max-width: 52ch;
+  margin-bottom: 2rem;
+}
+
+.hero__visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+/* Fake code editor that sits above the rotating orbits */
+.code-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), 0 0 60px rgba(232, 80, 2, 0.18);
+  transition: transform 0.4s;
+}
+
+.code-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+}
+
+.code-card__bar {
+  display: flex;
+  gap: 6px;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.code-card__bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.5;
+}
+
+.code-card__bar i:first-child {
+  background: var(--accent);
+  opacity: 1;
+}
+
+.code-card pre {
+  padding: 1.2rem;
+  font-size: 0.82rem;
+  overflow-x: auto;
+}
+
+/* Syntax highlighting tokens */
+.c-k { color: var(--accent); }
+.c-s { color: var(--muted); }
+.c-f { font-weight: 500; }
+
+.cursor {
+  color: var(--accent);
+  animation: blink 1s steps(2) infinite;
+}
+
+/* Decorative dashed rings rotating in opposite directions */
+.orbit {
+  position: absolute;
+  border: 1px dashed var(--accent);
+  border-radius: 50%;
+  opacity: 0.35;
+  animation: spin 30s linear infinite;
+}
+
+.orbit--1 {
+  width: 80%;
+  aspect-ratio: 1;
+}
+
+.orbit--2 {
+  width: 100%;
+  aspect-ratio: 1;
+  animation-direction: reverse;
+  animation-duration: 45s;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ==========================================================================
+   6. STATS
+   ========================================================================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  /* !important needed to beat the generic section.container padding */
+  padding-block: 1rem !important;
+}
+
+.stat strong {
+  display: block;
+  font: 700 2.4rem 'Space Grotesk', sans-serif;
+  color: var(--accent);
+}
+
+.stat span {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+
+/* ==========================================================================
+   7. ABOUT
+   ========================================================================== */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.split p {
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  justify-self: center;
+  overflow: hidden;
+  border: 1px solid var(--accent);
+  border-radius: 24px;
+  box-shadow: 0 0 40px rgba(232, 80, 2, 0.35);    /* accent glow */
+}
+
+.avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ==========================================================================
+   8. SKILLS & PROJECTS
+   ========================================================================== */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.badges li {
+  padding: 0.25rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  cursor: default;
+  transition: all 0.2s;
+}
+
+.badges li:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Placeholder box, replace with an <img> when a real project is added */
+.project__img {
+  aspect-ratio: 16 / 10;
+  margin-bottom: 1rem;
+  border: 1px dashed var(--muted);
+  border-radius: 10px;
+  opacity: 0.6;
+}
+
+
+/* ==========================================================================
+   9. CONTACT FORM
+   ========================================================================== */
+.contact:hover {
+  transform: none;                   /* a large form should not float on hover */
+}
+
+.contact form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.contact .btn {
+  justify-self: start;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.form-status {
+  min-height: 1.4em;                 /* reserves space so the layout does not jump */
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+
+
+/* ==========================================================================
+   10. SOCIAL ICONS (header and footer)
+   ========================================================================== */
+.socials {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+
+.socials a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+
+/* ==========================================================================
+   11. FOOTER
+   ========================================================================== */
+.footer {
+  padding-block: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer a:hover {
+  color: var(--accent);
+}
+
+
+/* ==========================================================================
+   12. COOKIE BANNER
+   ========================================================================== */
+.cookies {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 30;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(680px, 100% - 2rem);
+  padding: 1rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  font-size: 0.8rem;
+  transform: translateX(-50%);
+}
+
+/* display:flex above would override the native [hidden] behavior */
+.cookies[hidden] {
+  display: none;
+}
+
+.cookies div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+/* ==========================================================================
+   13. RESPONSIVE & ACCESSIBILITY
+   ========================================================================== */
+@media (max-width: 900px) {
+  /* Stack two-column sections */
+  .hero,
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Header: social icons move to the footer, nav becomes a dropdown */
+  .socials--header {
+    display: none;
+  }
+
+  .header__tools {
+    margin-right: 0;
+  }
+
+  .menu-btn {
+    display: grid;
+  }
+
+  .nav {
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.2rem 1.5rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+}
+
+/* Respect users who ask the system to reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
