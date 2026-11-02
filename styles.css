@@ -57,6 +57,8 @@ body {
   font-family: 'JetBrains Mono', monospace;
   line-height: 1.7;
   transition: background 0.3s, color 0.3s;
+/* Safety net: nothing should ever make the page scroll sideways */
+  overflow-x: hidden;
 }
 
 h1,
@@ -248,7 +250,7 @@ section.container {
    ========================================================================== */
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 3rem;
   align-items: center;
   min-height: 80vh;
@@ -263,7 +265,9 @@ section.container {
   position: relative;
   display: grid;
   place-items: center;
-  padding: 2rem;
+  padding: 3rem 2rem;
+  /* Rotating rings are wider than the column; clipping avoids sideways scroll */
+  overflow: hidden;
 }
 
 /* Fake code editor that sits above the rotating orbits */
@@ -377,7 +381,7 @@ section.container {
    ========================================================================== */
 .split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 3rem;
   align-items: center;
 }
@@ -570,11 +574,11 @@ section.container {
 /* ==========================================================================
    13. RESPONSIVE & ACCESSIBILITY
    ========================================================================== */
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   /* Stack two-column sections */
   .hero,
   .split {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .stats {
