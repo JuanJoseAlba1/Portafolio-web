@@ -10,7 +10,7 @@ Portafolio personal que combina visión técnica, optimización de procesos e in
 
 ## 🌐 Sitio web
 
-👉 **https://juanjosealba1.github.io/portafolio/** *(actualiza esta URL con la tuya tras activar GitHub Pages)*
+👉 **https://juanjosealba1.github.io/Portafolio-web/**
 
 ## ✨ Características
 
